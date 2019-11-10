@@ -7,5 +7,10 @@
             "email": "uenoryo@uma-b.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Umab\\Swagger\\": "src/"
+        }
+    }
 }
