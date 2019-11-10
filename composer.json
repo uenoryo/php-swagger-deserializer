@@ -7,7 +7,9 @@
             "email": "uenoryo@uma-b.com"
         }
     ],
-    "require": {},
+    "require": {
+        "symfony/yaml": "^4.3"
+    },
     "autoload": {
         "psr-4": {
             "Umab\\Swagger\\": "src/"
