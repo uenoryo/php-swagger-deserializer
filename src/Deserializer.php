@@ -34,6 +34,6 @@ class Deserializer implements DeserializerInterface
     protected function deserializeYml(string $filepath)
     {
         $yml = Yaml::parse(file_get_contents($filepath));
-        print_r($yml);
+        $swagger = Swagger::new($yml);
     }
 }
