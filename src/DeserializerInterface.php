@@ -4,5 +4,5 @@ namespace Umab\Swagger;
 
 interface DeserializerInterface
 {
-    public function deserialize($filepath);
+    public function deserialize(string $filepath);
 }
