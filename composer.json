@@ -1,0 +1,11 @@
+{
+    "name": "uenoryo/swagger-deserializer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "uenoryo",
+            "email": "uenoryo@uma-b.com"
+        }
+    ],
+    "require": {}
+}
