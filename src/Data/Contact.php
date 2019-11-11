@@ -2,6 +2,8 @@
 
 namespace Umab\Swagger\Data;
 
+use Umab\Swagger\Util\Readable;
+
 /**
  * Contact ...
  */

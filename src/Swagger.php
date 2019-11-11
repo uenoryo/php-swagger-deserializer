@@ -2,12 +2,17 @@
 
 namespace Umab\Swagger;
 
+use Umab\Swagger\Util\Readable;
+
 /**
  * OpenAPIの仕様をそのままデータ構造に落とし込むオブジェクト
  */
 class Swagger
 {
     use Readable;
+
+    /* @var data */
+    protected $data;
 
     /* @var openapi */
     protected $openApiVersion;

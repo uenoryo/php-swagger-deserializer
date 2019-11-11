@@ -2,11 +2,18 @@
 
 namespace Umab\Swagger;
 
+use Umab\Swagger\Util\Readable;
+
 /**
  * Info ...
  */
 class Info
 {
+    use Readable;
+
+    /** @var data */
+    protected $data;
+
     /** @var version */
     protected $version;
 
@@ -27,6 +34,8 @@ class Info
 
     public function __construct(array $data = [])
     {
+        $this->data = $data;
+
         $this->version = $data['version'] ?? "";
 
         $this->title = $data['title'] ?? "";
