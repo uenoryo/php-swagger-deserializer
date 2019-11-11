@@ -58,7 +58,7 @@ class Swagger
      */
     protected function setOpenApiVersion(string $version)
     {
-        //
+        $this->version = $version;
     }
 
     /**
