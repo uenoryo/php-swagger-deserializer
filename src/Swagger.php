@@ -79,9 +79,9 @@ class Swagger
      *
      * @param array $info
      */
-    protected function setInfo(array $info = [])
+    protected function setInfo(array $data = [])
     {
-        $this->info = new Info($info);
+        $this->info = new Info($data);
     }
 
     /**
@@ -109,8 +109,8 @@ class Swagger
      *
      * @param array $components
      */
-    protected function setComponents(array $components)
+    protected function setComponents(array $data = [])
     {
-        //
+        $this->components = new Components($data);
     }
 }
