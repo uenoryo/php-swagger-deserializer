@@ -3,6 +3,7 @@
 namespace Umab\Swagger;
 
 use Umab\Swagger\Util\Readable;
+use Umab\Swagger\Data\Info;
 
 /**
  * OpenAPIの仕様をそのままデータ構造に落とし込むオブジェクト
@@ -10,6 +11,11 @@ use Umab\Swagger\Util\Readable;
 class Swagger
 {
     use Readable;
+
+    public function __get($name)
+    {
+        return $this->$name ?? $this->data[$name] ?? null;
+    }
 
     /* @var data */
     protected $data;
@@ -37,7 +43,7 @@ class Swagger
      */
     public static function new(array $data)
     {
-        return new self($data);
+        return new Self($data);
     }
 
     /**
@@ -73,9 +79,9 @@ class Swagger
      *
      * @param array $info
      */
-    protected function setInfo(array $info)
+    protected function setInfo(array $info = [])
     {
-        //
+        $this->info = new Info($info);
     }
 
     /**

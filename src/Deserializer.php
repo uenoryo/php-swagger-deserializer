@@ -35,5 +35,7 @@ class Deserializer implements DeserializerInterface
     {
         $yml = Yaml::parse(file_get_contents($filepath));
         $swagger = Swagger::new($yml);
+
+        return $swagger;
     }
 }

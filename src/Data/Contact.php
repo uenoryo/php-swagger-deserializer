@@ -9,6 +9,8 @@ use Umab\Swagger\Util\Readable;
  */
 class Contact
 {
+    use Readable;
+
     /** @var name */
     protected $name;
 
@@ -18,7 +20,7 @@ class Contact
     /** @var url */
     protected $url;
 
-    public function __construct(array $data = [])
+    public function __construct(?array $data = [])
     {
         $this->name = $data['name'] ?? "";
 

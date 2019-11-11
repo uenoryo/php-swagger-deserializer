@@ -1,6 +1,6 @@
 <?php
 
-namespace Umab\Swagger;
+namespace Umab\Swagger\Data;
 
 use Umab\Swagger\Util\Readable;
 
@@ -29,10 +29,10 @@ class Info
     /** @var contact */
     protected $contact;
 
-    /** @var licence */
-    protected $licence;
+    /** @var license */
+    protected $license;
 
-    public function __construct(array $data = [])
+    public function __construct(?array $data = [])
     {
         $this->data = $data;
 
@@ -46,6 +46,6 @@ class Info
 
         $this->contact = new Contact($data['contact'] ?? null);
 
-        $this->licence = new Licence($data['licence'] ?? null);
+        $this->license = new License($data['license'] ?? null);
     }
 }
