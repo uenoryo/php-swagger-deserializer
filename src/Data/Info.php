@@ -35,8 +35,8 @@ class Info
 
         $this->termsOfService = $data['termsOfService'] ?? "";
 
-        $this->contact =  new Contact($data['contact'] ?? null);
+        $this->contact = new Contact($data['contact'] ?? null);
 
-        $this->licence =  new Licence($data['licence'] ?? null);
+        $this->licence = new Licence($data['licence'] ?? null);
     }
 }

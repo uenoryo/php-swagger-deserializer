@@ -7,6 +7,8 @@ namespace Umab\Swagger;
  */
 class Swagger
 {
+    use Readable;
+
     /* @var openapi */
     protected $openApiVersion;
 
