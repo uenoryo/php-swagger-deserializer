@@ -4,6 +4,7 @@ namespace Umab\Swagger;
 
 use Umab\Swagger\Util\Readable;
 use Umab\Swagger\Data\Info;
+use Umab\Swagger\Data\Components;
 
 /**
  * OpenAPIの仕様をそのままデータ構造に落とし込むオブジェクト

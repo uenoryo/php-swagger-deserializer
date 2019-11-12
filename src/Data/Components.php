@@ -9,6 +9,8 @@ use Umab\Swagger\Util\Readable;
  */
 class Components
 {
+    use Readable;
+
     protected $schemas;
 
     public function __construct(?array $data = [])
