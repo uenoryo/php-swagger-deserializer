@@ -21,7 +21,29 @@ class Schemas implements IteratorAggregate
         }
 
         foreach ($data as $name => $schema) {
-            $this->schemasByName[$name] = "a";
+            if ($schema === null || $schema === []) {
+                continue;
+            }
+
+            switch (true) {
+                case array_key_exists('allOf', $schema):
+                    $obj = new Schema($schema['allOf']);
+                    $obj->expectsAllProperties = true;
+                    $this->schemasByName[$name] = $obj;
+                    break;
+                case array_key_exists('anyOf', $schema):
+                    $obj = new Schema($schema['anyOf']);
+                    $obj->expectsAnyProperties = true;
+                    $this->schemasByName[$name] = $obj;
+                    break;
+                case array_key_exists('oneOf', $schema):
+                    $obj = new Schema($schema['oneOf']);
+                    $obj->expectsOneProperty = true;
+                    $this->schemasByName[$name] = $obj;
+                    break;
+                default:
+                    $this->schemasByName[$name] = new Schema($schema);
+            }
         }
     }
 
