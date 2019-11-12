@@ -2,13 +2,14 @@
 
 namespace Umab\Swagger\Data;
 
+use ArrayObject;
 use IteratorAggregate;
 use Umab\Swagger\Util\Readable;
 
 /**
  * Schemas ...
  */
-class Schemas implements IteratorAggregate
+class Schemas extends ArrayObject implements IteratorAggregate
 {
     use Readable;
 
@@ -45,6 +46,11 @@ class Schemas implements IteratorAggregate
                     $this->schemasByName[$name] = new Schema($schema);
             }
         }
+    }
+
+    public function offsetGet($name)
+    {
+        return $this->schemasByName[$name] ?? null;
     }
 
     function getIterator()
