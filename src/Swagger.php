@@ -54,6 +54,9 @@ class Swagger
      */
     public function __construct(array $data)
     {
+        // $refs を解決する
+        $data = $this->resolveReferences($data);
+
         $this->setOpenApiVersion($data['openapi']);
 
         $this->setInfo($data['info']);
@@ -113,5 +116,62 @@ class Swagger
     protected function setComponents(array $data = [])
     {
         $this->components = new Components($data);
+    }
+
+    /**
+     * $ref の参照を解決し、参照先のデータを入れる
+     */
+    protected function resolveReferences(array $data)
+    {
+        $getReference = function ($data, $path) {
+            $path = ltrim($path, '#/');
+            $keys = explode('/', $path);
+            $d = $data;
+            foreach ($keys as $key) {
+                if (isset($d[$key])) {
+                    $d = $d[$key];
+                } else {
+                    $d = null;
+                    break;
+                }
+            }
+            return $d;
+        };
+
+        // 再帰的に行うので上限100回
+        $maxExecCount = 100;
+        for ($i = 0; $i < $maxExecCount; $i++) {
+            $executed = false;
+            array_walk_recursive($data, function(&$e, $key) use($getReference, $data, $executed) {
+                if ($key === "\$ref") {
+                    $d = $getReference($data, $e);
+                    $e = $d;
+                    $executed = true;
+                }
+            });
+            if (! $executed) {
+                break;
+            }
+        }
+
+        // $refs を削除して改装を一段下げる
+        $fa = function(&$data) use (&$fa) {
+            if (!is_array($data) || !$data) {
+                return;
+            }
+
+            foreach ($data as $key => &$d) {
+                if ($key === "\$ref" && is_array($d)) {
+                    foreach ($d as $k => $p) {
+                        $data[$k] = $p;
+                    }
+                    unset($data[$key]);
+                }
+                $fa($d);
+            }
+        };
+        $fa($data);
+
+        return $data;
     }
 }
