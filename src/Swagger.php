@@ -43,9 +43,9 @@ class Swagger
      * @param array $data
      * @return Umab\Swagger\Swagger
      */
-    public static function new(array $data)
+    public static function new(?array $data = [])
     {
-        return new Self($data);
+        return new self($data);
     }
 
     /**
@@ -53,7 +53,7 @@ class Swagger
      *
      * @param array $data
      */
-    public function __construct(array $data)
+    public function __construct(?array $data = [])
     {
         // $refs を解決する
         $data = $this->resolveReferences($data);
@@ -74,7 +74,7 @@ class Swagger
      *
      * @param string $version
      */
-    protected function setOpenApiVersion(string $version)
+    protected function setOpenApiVersion(?string $version = '')
     {
         $this->version = $version;
     }
@@ -84,7 +84,7 @@ class Swagger
      *
      * @param array $info
      */
-    protected function setInfo(array $data = [])
+    protected function setInfo(?array $data = [])
     {
         $this->info = new Info($data);
     }
@@ -94,7 +94,7 @@ class Swagger
      *
      * @param array $servers
      */
-    protected function setServers(array $servers)
+    protected function setServers(?array $servers = [])
     {
         //
     }
@@ -104,7 +104,7 @@ class Swagger
      *
      * @param array $paths
      */
-    protected function setPaths(array $data)
+    protected function setPaths(?array $data = [])
     {
         $this->paths = new Paths($data);
     }
@@ -114,7 +114,7 @@ class Swagger
      *
      * @param array $components
      */
-    protected function setComponents(array $data = [])
+    protected function setComponents(?array $data = [])
     {
         $this->components = new Components($data);
     }
@@ -122,8 +122,12 @@ class Swagger
     /**
      * $ref の参照を解決し、参照先のデータを入れる
      */
-    protected function resolveReferences(array $data)
+    protected function resolveReferences(?array $data = [])
     {
+        if (!is_array($data) || count($data) === 0) {
+            return;
+        }
+
         $getReference = function ($data, $path) {
             $path = ltrim($path, '#/');
             $keys = explode('/', $path);
