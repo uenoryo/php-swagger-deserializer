@@ -43,6 +43,9 @@ class Path
         $this->requestBody = new RequestBody($data['requestBody'] ?? []);
 
         $this->responses = [];
+        foreach ($data['responses'] ?? [] as $statusCode => $info) {
+            $this->responses[] = new Response($statusCode, $info);
+        }
     }
 
     protected function methodFromString($str)
