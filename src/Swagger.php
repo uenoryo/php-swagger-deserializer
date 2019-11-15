@@ -4,6 +4,7 @@ namespace Umab\Swagger;
 
 use Umab\Swagger\Util\Readable;
 use Umab\Swagger\Data\Info;
+use Umab\Swagger\Data\Server;
 use Umab\Swagger\Data\Paths;
 use Umab\Swagger\Data\Components;
 
@@ -96,7 +97,10 @@ class Swagger
      */
     protected function setServers(?array $servers = [])
     {
-        //
+        $this->serviers = [];
+        foreach ($servers as $info) {
+            $this->servers[] = new Server($info);
+        }
     }
 
     /**
