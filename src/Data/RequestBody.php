@@ -19,7 +19,7 @@ class RequestBody
     {
         $this->description = $data['description'] ?? '';
 
-        if (is_array($data['content'])) {
+        if (isset($data['content']) && is_array($data['content'])) {
             foreach ($data['content'] as $type => $info) {
                 $this->content = new Content($type, $info);
 

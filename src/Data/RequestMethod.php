@@ -29,7 +29,7 @@ class RequestMethod
      */
     public static function Get()
     {
-        return new Self(REQUEST_METHOD_GET);
+        return new self(self::REQUEST_METHOD_GET);
     }
 
     /**
@@ -37,7 +37,7 @@ class RequestMethod
      */
     public static function Head()
     {
-        return new Self(REQUEST_METHOD_HEAD);
+        return new self(self::REQUEST_METHOD_HEAD);
     }
 
     /**
@@ -45,14 +45,14 @@ class RequestMethod
      */
     public static function Post()
     {
-        return new Self(REQUEST_METHOD_POST);
+        return new self(self::REQUEST_METHOD_POST);
     }
     /**
      * Put ...
      */
     public static function Put()
     {
-        return new Self(REQUEST_METHOD_PUT);
+        return new self(self::REQUEST_METHOD_PUT);
     }
 
     /**
@@ -60,7 +60,7 @@ class RequestMethod
      */
     public static function Delete()
     {
-        return new Self(REQUEST_METHOD_DELETE);
+        return new self(self::REQUEST_METHOD_DELETE);
     }
 
     /**
@@ -68,7 +68,7 @@ class RequestMethod
      */
     public static function Connect()
     {
-        return new Self(REQUEST_METHOD_CONNECT);
+        return new self(self::REQUEST_METHOD_CONNECT);
     }
 
     /**
@@ -76,7 +76,7 @@ class RequestMethod
      */
     public static function Options()
     {
-        return new Self(REQUEST_METHOD_OPTIONS);
+        return new self(self::REQUEST_METHOD_OPTIONS);
     }
 
     /**
@@ -84,7 +84,7 @@ class RequestMethod
      */
     public static function Trace()
     {
-        return new Self(REQUEST_METHOD_TRACE);
+        return new self(self::REQUEST_METHOD_TRACE);
     }
 
     /**
@@ -92,7 +92,7 @@ class RequestMethod
      */
     public static function Patch()
     {
-        return new Self(REQUEST_METHOD_PATCH);
+        return new self(self::REQUEST_METHOD_PATCH);
     }
 
     /**
