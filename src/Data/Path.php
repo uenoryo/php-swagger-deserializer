@@ -36,6 +36,9 @@ class Path
         $this->operationId = $data['operationId'] ?? '';
 
         $this->parameters = [];
+        foreach ($data['parameters'] ?? [] as $param) {
+            $this->parameters[] = new Parameter($param);
+        }
 
         $this->requestBody = null;
 
