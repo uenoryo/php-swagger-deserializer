@@ -40,7 +40,7 @@ class Path
             $this->parameters[] = new Parameter($param);
         }
 
-        $this->requestBody = null;
+        $this->requestBody = new RequestBody($data['requestBody'] ?? []);
 
         $this->responses = [];
     }
