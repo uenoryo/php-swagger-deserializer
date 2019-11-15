@@ -17,9 +17,7 @@ class RequestMethod
     const REQUEST_METHOD_TRACE   = 8;
     const REQUEST_METHOD_PATCH   = 9;
 
-    public static RequestMethod
-
-    protected value;
+    protected $value;
 
     function __construct($value)
     {
@@ -54,7 +52,7 @@ class RequestMethod
      */
     public static function Put()
     {
-        return new Self(REQUEST_METHOD_PUT;
+        return new Self(REQUEST_METHOD_PUT);
     }
 
     /**

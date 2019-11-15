@@ -4,6 +4,7 @@ namespace Umab\Swagger;
 
 use Umab\Swagger\Util\Readable;
 use Umab\Swagger\Data\Info;
+use Umab\Swagger\Data\Paths;
 use Umab\Swagger\Data\Components;
 
 /**
@@ -103,9 +104,9 @@ class Swagger
      *
      * @param array $paths
      */
-    protected function setPaths(array $paths)
+    protected function setPaths(array $data)
     {
-        //
+        $this->paths = new Paths($data);
     }
 
     /**
