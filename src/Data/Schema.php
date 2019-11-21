@@ -11,33 +11,41 @@ class Schema
 {
     use Readable;
 
-    protected $name;
+    protected $type;
 
-    public $expectsAllProperties;
+    protected $in;
 
-    public $expectsAnyProperties;
+    protected $description;
 
-    public $expectsOneProperty;
+    protected $required;
+
+    protected $style;
+
+    protected $item;
 
     protected $properties;
 
-    public function __construct($name, $data = [])
+    public function __construct($data = [])
     {
-        $this->name = $name ?? '';
+        $this->type = $data['type'] ?? '';
 
+        $this->format = $data['format'] ?? '';
+
+        $this->description = $data['description'] ?? '';
+
+        // 配列
+        if ($this->type === 'array') {
+            $this->item = new self($data['items'] ?? []);
+        }
+
+        // オブジェクト
         $this->properties = [];
+        if ($this->type === 'object') {
+            $this->required = $data['required'] ?? [];
 
-        // 通常の配列の場合は、複数のオブジェクトで構成されたschema
-        if (array_values($data) === $data) {
-            foreach ($data as $d) {
-                if (array_key_exists('$ref', $d)) {
-                    $this->properties[] = new Property($d, $d);
-                } else {
-                    $this->properties[] = new Property('', $d);
-                }
+            foreach ($data['properties'] ?? [] as $name => $d) {
+                $this->properties[$name] = new self($d);
             }
-        } else {
-            $this->properties[] = new Property('', $data);
         }
     }
 }

@@ -59,15 +59,15 @@ class Swagger
         // $refs を解決する
         $data = $this->resolveReferences($data);
 
-        $this->setOpenApiVersion($data['openapi']);
+        $this->setOpenApiVersion($data['openapi'] ?? []);
 
-        $this->setInfo($data['info']);
+        $this->setInfo($data['info'] ?? []);
 
-        $this->setServers($data['servers']);
+        $this->setServers($data['servers'] ?? []);
 
-        $this->setPaths($data['paths']);
+        $this->setPaths($data['paths'] ?? []);
 
-        $this->setComponents($data['components']);
+        $this->setComponents($data['components'] ?? []);
     }
 
     /**

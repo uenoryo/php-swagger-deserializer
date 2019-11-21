@@ -25,26 +25,7 @@ class Schemas extends ArrayObject implements IteratorAggregate
             if ($schema === null || $schema === []) {
                 continue;
             }
-
-            switch (true) {
-                case array_key_exists('allOf', $schema):
-                    $obj = new Schema($name, $schema['allOf']);
-                    $obj->expectsAllProperties = true;
-                    $this->schemasByName[$name] = $obj;
-                    break;
-                case array_key_exists('anyOf', $schema):
-                    $obj = new Schema($name, $schema['anyOf']);
-                    $obj->expectsAnyProperties = true;
-                    $this->schemasByName[$name] = $obj;
-                    break;
-                case array_key_exists('oneOf', $schema):
-                    $obj = new Schema($name, $schema['oneOf']);
-                    $obj->expectsOneProperty = true;
-                    $this->schemasByName[$name] = $obj;
-                    break;
-                default:
-                    $this->schemasByName[$name] = new Schema($name, $schema);
-            }
+            $this->schemasByName[$name] = new Schema($schema);
         }
     }
 
